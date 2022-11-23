@@ -17,7 +17,7 @@ def auth():
         auth = requests.post(access_token, data=data).json()
     
     if 'id' not in account.json():
-        a_token, r_token = auth['access_token'], auth['refresh_token']
+        access_token, refresh_token = auth['access_token'], auth['refresh_token']
         
         with open(r"access.txt", "w") as file: # Overwrite the file 
             file.write(a_token + '\n' + r_token)
