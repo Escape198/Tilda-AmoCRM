@@ -1,7 +1,7 @@
 base_amo = 'https://******.amocrm.ru'
 create_contact_url = base_amo + '/api/v4/contacts'
 create_deals_url = base_amo + '/api/v4/leads'
-pipeline_statuses = base_amo + '/api/v4/leads/pipelines/201429/statuses'
+pipeline_statuses = base_amo + '/api/v4/leads/pipelines/******/statuses'
 get_custom_fields = base_amo + '/api/v4/contacts/custom_fields'
 get_account = base_amo +  '/api/v4/account'
 get_contact = base_amo +  '/api/v4/contacts'
