@@ -1,9 +1,7 @@
 # Accepts 1 or 2 (1-access, 2-refresh) and returns the desired
 def access(number: int):
-    count = 0
     with open(r"access.txt", "r") as file:
-        for line in file:
-            count += 1
+        for count, line in enumerate(file):
             if count == number:
                 return line
             
