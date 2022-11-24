@@ -9,7 +9,7 @@ Other parameters are not required "Api Method" - off
 
 
 Note: your view must return 200.
-If you use redirects or other methods in your handler - then you won't need Webhooks in your settings, just replace action="your ulr" of Tilda form
+If you use redirects or other methods in your handler - then you won't need Webhooks in your settings, just replace action="your ulr" of Tilda form `Recommended`
 
 # AmoCRM
 You will need an access token and a refresh token.
@@ -28,5 +28,8 @@ After creating the application you will receive an authorization code (which mus
   'code': code
   }
   
-  After that you will get 2 values that need to be stored (in a file or in a database), because they need to be updated once a day
+  ***
+  After that you will get 2 values that need to be stored (refresh and access).
+  
+  You can store it in a file `access.py` or in a database, writing to it the actual data every day
   
