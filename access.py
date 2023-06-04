@@ -22,7 +22,7 @@ def auth():
         with open('tmp/restart.txt', 'tw', encoding='utf-8') as f: # Restart
             pass
 
-        token = access(1) # .replace('\n', '') Must have
+        token = access(1)
         headers = {'Authorization': 'Bearer {}'.format(token), 
            'Content-Type': 'application/json'
            }
