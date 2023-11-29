@@ -10,18 +10,17 @@ get_contact = base_amo +  '/api/v4/contacts'
 @csrf_exempt
 def api(request: Request) -> render:
     if request.method == 'POST':
-        email = request.POST.get('email', '0')
-        phone = request.POST.get('phone', '0')
-        name = request.POST.get('name', '0')
-        source = request.POST.get('source', '0')
+        auth() # Checking accesses
+        
+        email = request.POST.get('email', '')
+        phone = request.POST.get('phone', '')
+        name = request.POST.get('name', '')
+        source = request.POST.get('source', '')
         
         contact_search_data  = {
             'query' : phone
             }
         
-        auth() # Checking accesses
-    
-    
         search_contact = requests.get(get_contact, params=contact_search_data, headers=headers) # Looking for a phone contact
         
         params_contact = {
