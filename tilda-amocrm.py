@@ -8,7 +8,7 @@ get_contact = base_amo +  '/api/v4/contacts'
 
 # Tilda
 @csrf_exempt
-def api(request):
+def api(request: Request) -> render:
     if request.method == 'POST':
         email = request.POST.get('email', '0')
         phone = request.POST.get('phone', '0')
