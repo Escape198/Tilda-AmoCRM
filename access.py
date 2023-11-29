@@ -5,7 +5,7 @@ def access(number: int) -> str:
             if count == number:
                 return line
             
- 
+
 def auth() -> None:
     global token, headers
     account = requests.get(get_account, headers=headers) # Checks the need to change tokens (amoCRM has no methods for verification)
