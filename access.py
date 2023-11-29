@@ -1,13 +1,12 @@
 # Accepts 1 or 2 (1-access, 2-refresh) and returns the desired
-def access(number: int):
+def access(number: int) -> str:
     with open(r"access.txt", "r") as file:
         for count, line in enumerate(file):
             if count == number:
                 return line
             
  
-
-def auth():
+def auth() -> None:
     global token, headers
     account = requests.get(get_account, headers=headers) # Checks the need to change tokens (amoCRM has no methods for verification)
     
