@@ -6,7 +6,7 @@ get_custom_fields = base_amo + '/api/v4/contacts/custom_fields'
 get_account = base_amo +  '/api/v4/account'
 get_contact = base_amo +  '/api/v4/contacts'
 
-# Tilda
+
 @csrf_exempt
 def api(request: Request) -> render:
     if request.method == 'POST':
