@@ -21,15 +21,18 @@ def api(request: Request) -> render:
             'query' : phone
             }
         
-        search_contact = requests.get(get_contact, params=contact_search_data, headers=headers) # Looking for a phone contact
-        
+        search_contact = requests.get(
+            get_contact,
+            params=contact_search_data,
+            headers=headers)
+
         params_contact = {
             'name': name,
             'first_name': name,
             'email': email,
             'custom_fields_values': [
                     {
-                        'field_id': 11111, # Find in html-template amoCRM (five-digit number named data)
+                        'field_id': 11111,
                         'values': [
                             {
                                 'value': phone
@@ -55,24 +58,30 @@ def api(request: Request) -> render:
                     }
                 ]
             }
-                
+
         if search_contact.status_code != 204:
-            contacts_count = len(search_contact.json()['_embedded']['contacts']) # Count the number of contacts found
-            
+            contacts_count = len(
+                search_contact.json()['_embedded']['contacts'])
+
             if contacts_count:
-                contact_id = search_contact.json()['_embedded']['contacts'][0]['id'] # Take
-                
-            else: 
-                response_contact = requests.post(create_contact_url, json=[params_contact], headers=headers) # Create a new contact
+                contact_id = search_contact.json()['_embedded']['contacts'][0]['id']
+            else:
+                response_contact = requests.post(
+                    create_contact_url,
+                    json=[params_contact],
+                    headers=headers)
                 contact_id = response_contact.json()['_embedded']['contacts'][0]['id']
         else: 
-        # Usually this block occurs when you receive other errors (no payment, inability to create a deal, invalid custom value)
-        
-        # There must be a processing of these events
-            response_contact = requests.post(create_contact_url, json=[params_contact], headers=headers) 
+            response_contact = requests.post(
+                create_contact_url,
+                json=[params_contact],
+                headers=headers) 
             contact_id = response_contact.json()['_embedded']['contacts'][0]['id']
             
-        response_deals = requests.post(create_deals_url, json=[params_deal], headers=headers)
+        response_deals = requests.post(
+            create_deals_url,
+            json=[params_deal],
+            headers=headers)
         
         deal_id = response_deals.json()['_embedded']['leads'][0]['id']
 
@@ -82,8 +91,11 @@ def api(request: Request) -> render:
             'to_entity_type': 'contacts'
         
         }
-    
-        response_entity_leads = requests.post(entity_leads, json=[params_entity_leads], headers=headers)
+        response_entity_leads = requests.post(
+            entity_leads,
+            json=[params_entity_leads],
+            headers=headers)
 
-        return HttpResponseRedirect(f"https://t.me/test?start=test_{source}_{contact_id}"  # Redirect to telegram bot
+        return HttpResponseRedirect(
+            f"https://t.me/test?start=test_{source}_{contact_id}"
     return render(request, 'api/test.html')
