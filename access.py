@@ -8,17 +8,22 @@ def access(number: int) -> str:
 
 def auth() -> None:
     global token, headers
-    account = requests.get(get_account, headers=headers) # Checks the need to change tokens (amoCRM has no methods for verification)
+    account = requests.get(
+        get_account,
+        headers=headers) 
     
     if account.status_code == 401: 
-        auth = requests.post(access_token, data=data).json()
+        auth = requests.post(
+            access_token,
+            data=data).json()
     
     if 'id' not in account.json():
-        access_token, refresh_token = auth['access_token'], auth['refresh_token']
+        access_token, refresh_token = (
+            auth['access_token'], auth['refresh_token'])
         
-        with open(r"access.txt", "w") as file: # Overwrite the file 
+        with open(r"access.txt", "w") as file:
             file.write(a_token + '\n' + r_token)
-        with open('tmp/restart.txt', 'tw', encoding='utf-8') as f: # Restart
+        with open('tmp/restart.txt', 'tw', encoding='utf-8') as f:
             pass
 
         token = access(1)
